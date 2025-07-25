@@ -1,0 +1,29 @@
+🧪 Clinical Features Explained:
+
+
+| Column  | Full Form / Meaning      | Medical Interpretation                               |
+| ------- | ------------------------ | ---------------------------------------------------- |
+| `bp`    | Blood Pressure (mm/Hg)   | High BP can damage kidneys                           |
+| `sg`    | Specific Gravity (urine) | Tests kidney's concentration ability                 |
+| `al`    | Albumin (urine protein)  | Protein in urine → kidney damage                     |
+| `su`    | Sugar (urine)            | Indicates diabetes (risk for CKD)                    |
+| `rbc`   | Red Blood Cells          | High/low = kidney issue or blood loss                |
+| `pc`    | Pus Cells                | Infection indicator                                  |
+| `pcc`   | Pus Cell Clumps          | Sign of serious infection                            |
+| `ba`    | Bacteria                 | Indicates urinary tract infection                    |
+| `bgr`   | Blood Glucose Random     | High glucose = diabetes (major cause of CKD)         |
+| `bu`    | Blood Urea               | Waste product; high = reduced kidney function        |
+| `sc`    | Serum Creatinine         | Major CKD marker; high levels = poor function        |
+| `sod`   | Sodium                   | Electrolyte; affected by kidney issues               |
+| `pot`   | Potassium                | Imbalanced in kidney failure                         |
+| `hemo`  | Hemoglobin               | Low in CKD due to less EPO hormone                   |
+| `pcv`   | Packed Cell Volume       | Similar to hematocrit; low in anemia (common in CKD) |
+| `wc`    | White Blood Cell Count   | Inflammation/infection marker                        |
+| `rc`    | Red Blood Cell Count     | Drops in CKD-induced anemia                          |
+| `htn`   | Hypertension             | Both cause and result of CKD                         |
+| `dm`    | Diabetes Mellitus        | Major risk factor for CKD                            |
+| `cad`   | Coronary Artery Disease  | Comorbidity; heart and kidney health linked          |
+| `appet` | Appetite                 | Poor appetite common in advanced CKD                 |
+| `pe`    | Pedal Edema              | Swelling in feet → fluid retention due to CKD        |
+| `ane`   | Anemia                   | Common complication in CKD patients                  |
+

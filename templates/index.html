@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CKDP App</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+    }
+
+    .background-blur {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: url("{{ url_for('static', filename='images/kidney.png') }}") center center / cover no-repeat fixed;
+      background-size: cover;
+      z-index: -2;
+    }
+
+    .background-blur::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 15px;
+      color: white;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px #ffffffaa;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    input[type="text"],
+    select {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px #66f2ff;
+    }
+
+    label {
+      align-self: center;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    button {
+      grid-column: span 2;
+      padding: 15px;
+      background-color: #00c3ff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00c3ff, 0 0 20px #00c3ff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #00a3cc;
+      box-shadow: 0 0 15px #00f7ff, 0 0 25px #00f7ff;
+    }
+
+    .result {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 20px;
+      color: #00ffbf;
+      text-shadow: 0 0 10px #00ffbf;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #ccc;
+    }
+
+    footer a {
+      color: #00e1ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background -->
+  <div class="background-blur"></div>
+
+  <!-- Foreground Form Container -->
+  <div class="container">
+    <h1>Chronic Kidney Disease Predictor</h1>
+    <form method="POST" action="/predict">
+      <input type="text" name="age" placeholder="Age" required>
+      <input type="text" name="blood_pressure" placeholder="Blood Pressure" required>
+      <input type="text" name="specific_gravity" placeholder="Specific Gravity" required>
+      <input type="text" name="albumin" placeholder="Albumin" required>
+      <input type="text" name="blood_urea" placeholder="Blood Urea" required>
+      <input type="text" name="serum_creatinine" placeholder="Serum Creatinine" required>
+      <input type="text" name="hemoglobin" placeholder="Hemoglobin" required>
+      <input type="text" name="packed_cell_volume" placeholder="Packed Cell Volume" required>
+
+      <label for="diabetes_mellitus">Diabetes Mellitus:</label>
+      <select name="diabetes_mellitus" required>
+        <option value="" disabled selected>Select option</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <label for="hypertension">Hypertension:</label>
+      <select name="hypertension" required>
+        <option value="" disabled selected>Select option</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <input type="text" name="red_blood_cell_count" placeholder="Red Blood Cell Count" required>
+      <input type="text" name="blood_glucose_random" placeholder="Blood Glucose Random" required>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">
+      Result: <strong>{{ prediction_text }}</strong>
+    </div>
+    {% endif %}
+  </div>
+
+  <footer>
+    &copy; 2025 <span style="font-weight: bold; color:#01d0f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Ari R</span> — Licensed under <a href="#">MIT License</a>
+  </footer>
+
+
+  <!-- JavaScript for Select Box Dynamic Styling -->
+  <script>
+    function updateSelectStyle(select) {
+      const value = select.value;
+      if (value === "1") {
+        select.style.backgroundColor = "#d6f5d6";  // Light green
+        select.style.color = "green";
+      } else if (value === "0") {
+        select.style.backgroundColor = "#fdd";     // Light red
+        select.style.color = "red";
+      } else {
+        select.style.backgroundColor = "#eee";
+        select.style.color = "#000";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const selects = document.querySelectorAll('select[name="diabetes_mellitus"], select[name="hypertension"]');
+      selects.forEach(select => {
+        select.addEventListener("change", () => updateSelectStyle(select));
+        updateSelectStyle(select); // Initialize on page load
+      });
+    });
+  </script>
+</body>
+</html>
