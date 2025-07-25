@@ -40,7 +40,7 @@ This notebook turns complex health data into actionable intelligence using advan
 ### 1. 🧹 Data Cleaning & Preparation
 - Handled missing values using imputation strategies (mean/mode/fill-forward)
 - Removed extreme outliers using IQR
-- Encoded categorical features (Label + One-Hot Encoding)
+- Encoded categorical features (Label)
 
 ### 2. 📊 EDA & Insights
 - Used Seaborn and Matplotlib to explore trends

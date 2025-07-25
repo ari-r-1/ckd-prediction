@@ -5,5 +5,8 @@ services:
     plan: free
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn main:app"
+    pythonVersion: python-3.9.13
+    python-3.10.12
+    python-3.8.12
     branch: main
     autoDeploy: true
