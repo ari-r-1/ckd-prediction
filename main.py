@@ -15,7 +15,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Load trained model
-model = pickle.load(open("ckdp_cleaned.pkl", "rb"))
+model = pickle.load(open("ckdp_rechanged.pkl", "rb"))
 
 @app.route("/")
 def home():
